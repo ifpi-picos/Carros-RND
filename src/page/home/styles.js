@@ -76,7 +76,7 @@ export const BotaoBuscar = styled.button`
   font-weight: bold;
 `;
 
-export const CarroInfo = styled.div`
+export const FilmeInfo = styled.div`
   background-color: #ffffff; /* Branco */
   padding: 20px;
   border-radius: 10px;

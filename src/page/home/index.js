@@ -10,23 +10,24 @@ import {
   Pesquisa,
   PesquisaIcone,
   BotaoBuscar,
-  CarroInfo,
+  FilmeInfo,
 } from './styles';
 import { FaSearch } from 'react-icons/fa';
 
 const Home = () => {
-  const [carroSelecionado, setCarroSelecionado] = useState(null);
+  const [filmeSelecionado, setFilmeSelecionado] = useState(null);
 
   useEffect(() => {
-    // Simulação de um carro selecionado
-    const carroExemplo = {
-      nome: 'Carro A',
-      descricao: 'Um carro confortável e econômico para o dia a dia.',
-      preco: 'R$ 50.000',
-      combustivel: 'Gasolina',
-      desempenho: '10km/l'
+    // Simulação de um filme selecionado
+    const filmeExemplo = {
+      nome: 'Filme A',
+      descricao: 'Um filme emocionante e cheio de aventura.',
+      tipo: 'Ação',
+      ano: '2022',
+      duracao: '2h 30min',
+      diretor: 'Diretor X',
     };
-    setCarroSelecionado(carroExemplo);
+    setFilmeSelecionado(filmeExemplo);
   }, []);
 
   return (
@@ -43,20 +44,21 @@ const Home = () => {
             </PesquisaIcone>
             <Pesquisa
               type="text"
-              placeholder="Buscar veículo..."
+              placeholder="Buscar filme..."
               onChange={() => {}}
             />
             <BotaoBuscar>Buscar</BotaoBuscar>
           </PesquisaWrapper>
         </ContainerPes>
-        {carroSelecionado && (
-          <CarroInfo>
-            <h2>{carroSelecionado.nome}</h2>
-            <p>{carroSelecionado.descricao}</p>
-            <p>Preço: {carroSelecionado.preco}</p>
-            <p>Combustível: {carroSelecionado.combustivel}</p>
-            <p>Desempenho: {carroSelecionado.desempenho}</p>
-          </CarroInfo>
+        {filmeSelecionado && (
+          <FilmeInfo>
+            <h2>{filmeSelecionado.nome}</h2>
+          
+            <p>Tipo: {filmeSelecionado.tipo}</p>
+            <p>Ano: {filmeSelecionado.ano}</p>
+            <p>Duração: {filmeSelecionado.duracao}</p>
+            <p>Diretor: {filmeSelecionado.diretor}</p>
+          </FilmeInfo>
         )}
       </Main>
     </AppBody>
