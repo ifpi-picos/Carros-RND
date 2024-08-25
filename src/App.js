@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from './page/home'; // Importa o componente Home
+import Home from './page/home';
 
 function App() {
   return (
     <div className="App">
-      <Home /> {/* Renderiza o componente Home */}
+      <Home />
     </div>
   );
 }

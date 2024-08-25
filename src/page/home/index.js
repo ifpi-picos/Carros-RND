@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react";
 import {
   AppBody,
   Header,
@@ -10,30 +10,53 @@ import {
   Pesquisa,
   PesquisaIcone,
   BotaoBuscar,
-  CarroInfo,
-} from './styles';
-import { FaSearch } from 'react-icons/fa';
+  FilmeInfo,
+  FilmeImagem,
+  FilmesContainer,
+} from "./styles";
+import { FaSearch } from "react-icons/fa";
+import logo from "./../../assets/Logo.png";
 
 const Home = () => {
-  const [carroSelecionado, setCarroSelecionado] = useState(null);
+  const [filmeSelecionado, setFilmeSelecionado] = useState(null);
+  const [query, setQuery] = useState("");
+  const [filmes, setFilmes] = useState([]);
 
-  useEffect(() => {
-    // Simulação de um carro selecionado
-    const carroExemplo = {
-      nome: 'Carro A',
-      descricao: 'Um carro confortável e econômico para o dia a dia.',
-      preco: 'R$ 50.000',
-      combustivel: 'Gasolina',
-      desempenho: '10km/l'
-    };
-    setCarroSelecionado(carroExemplo);
-  }, []);
+  const API_KEY = "c605dbfbc7d745806ecd13d954090f68";
+  const URL_BASE = "https://api.themoviedb.org/3";
+  const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500";
+
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
+
+  const buscarFilmes = async () => {
+    try {
+      const response = await fetch(
+        `${URL_BASE}/search/movie?api_key=${API_KEY}&query=${query}`
+      );
+      const data = await response.json();
+      setFilmes(data.results);
+      console.log(data.results);
+    } catch (error) {
+      console.error("Erro ao buscar filmes:", error);
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    setQuery(e.target.value);
+  };
 
   return (
     <AppBody>
       <Header>
-        <Logo>Logo</Logo>
-        <Descricao>Descrição da Página</Descricao>
+        <Logo>
+          <img src={logo} alt="Logo" />
+        </Logo>
+        <Descricao>Explore e descubra novos filmes com informações detalhadas e avaliações </Descricao>
       </Header>
       <Main>
         <ContainerPes>
@@ -43,20 +66,57 @@ const Home = () => {
             </PesquisaIcone>
             <Pesquisa
               type="text"
-              placeholder="Buscar veículo..."
-              onChange={() => {}}
+              placeholder="Buscar filme..."
+              onChange={handleSearchInputChange}
             />
-            <BotaoBuscar>Buscar</BotaoBuscar>
+            <BotaoBuscar onClick={buscarFilmes}>Buscar</BotaoBuscar>
           </PesquisaWrapper>
         </ContainerPes>
-        {carroSelecionado && (
-          <CarroInfo>
-            <h2>{carroSelecionado.nome}</h2>
-            <p>{carroSelecionado.descricao}</p>
-            <p>Preço: {carroSelecionado.preco}</p>
-            <p>Combustível: {carroSelecionado.combustivel}</p>
-            <p>Desempenho: {carroSelecionado.desempenho}</p>
-          </CarroInfo>
+        {filmes.length > 0 && (
+          <FilmesContainer>
+            {filmes.map((filme) => (
+              <FilmeInfo
+                key={filme.id}
+                onClick={() => setFilmeSelecionado(filme)}
+              >
+                {filme.poster_path && (
+                  <FilmeImagem
+                    src={`${IMAGE_BASE_URL}${filme.poster_path}`}
+                    alt={`Poster de ${filme.title}`}
+                  />
+                )}
+                <h2>{filme.title}</h2>
+                <p>{truncateText(filme.overview, 100)}</p>{" "}
+                <p>
+                  <strong>Data de lançamento:</strong> {filme.release_date}
+                </p>
+                <p>
+                  <strong>Avaliação:</strong> {filme.vote_average}
+                </p>
+              </FilmeInfo>
+            ))}
+          </FilmesContainer>
+        )}
+        {filmeSelecionado && (
+          <FilmeInfo
+            style={{ marginTop: "20px", maxWidth: "300px", margin: "0 auto" }}
+          >
+            {filmeSelecionado.poster_path && (
+              <FilmeImagem
+                src={`${IMAGE_BASE_URL}${filmeSelecionado.poster_path}`}
+                alt={`Poster de ${filmeSelecionado.title}`}
+              />
+            )}
+            <h2>{filmeSelecionado.title}</h2>
+            <p>{filmeSelecionado.overview}</p>
+            <p>
+              <strong>Data de lançamento:</strong>{" "}
+              {filmeSelecionado.release_date}
+            </p>
+            <p>
+              <strong>Avaliação:</strong> {filmeSelecionado.vote_average}
+            </p>
+          </FilmeInfo>
         )}
       </Main>
     </AppBody>
