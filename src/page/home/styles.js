@@ -1,34 +1,51 @@
 import styled from "styled-components";
 
 export const AppBody = styled.div`
-  background-color: #f0f0f0; /* Cinza claro */
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background-color: #e4e4e4;
+  padding-bottom: 20px;
+  margin: 0;
+  padding: 0;
 `;
 
-export const Header = styled.div`
-  width: 100%;
-  height: 4em;
+export const Header = styled.header`
   display: flex;
-  background-color: #000000; /* Preto */
-  align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  align-items: center;
+  min-width: 100%;
+  max-width: 1200px;
+  background-color: #282c34;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 `;
 
 export const Logo = styled.div`
-  font-size: 1.5em;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  img {
+    width: 190px;
+    height: auto;
+    margin: 7px;
+  }
+`;
+
+export const Descricao = styled.p`
+  font-size: 1rem;
+  padding: 0 10px;
+  text-align: center;
+  max-width: 300px;
   font-weight: bold;
-  color: #ffffff;
+  text-shadow: 0 1px 2px #868686;
 `;
 
-export const Descricao = styled.div`
-  font-size: 1em;
-  color: #ffffff;
-`;
-
-export const Main = styled.div`
+export const Main = styled.main`
+  max-width: 1200px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -36,60 +53,96 @@ export const Main = styled.div`
 `;
 
 export const ContainerPes = styled.div`
-  width: 100%;
-  max-width: 600px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 20px;
+  width: 100%;
 `;
 
 export const PesquisaWrapper = styled.div`
   display: flex;
   align-items: center;
-  border: 2px solid #87CEEB; /* Azul claro */
-  border-radius: 5px;
-  overflow: hidden;
-`;
-
-export const PesquisaIcone = styled.div`
-  padding: 0 10px;
-  color: #87CEEB; /* Azul claro */
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
 `;
 
 export const Pesquisa = styled.input`
-  flex: 1;
-  padding: 10px;
-  font-size: 0.9em;
   border: none;
   outline: none;
-  color: #333333;
-  ::placeholder {
-    color: #888888; /* Cor mais apagada para o placeholder */
-  }
+  padding: 10px;
+  font-size: 1rem;
+  flex: 1;
+`;
+
+export const PesquisaIcone = styled.div`
+  color: #282c34;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 export const BotaoBuscar = styled.button`
-  background-color: #87CEEB; /* Azul claro */
-  color: #ffffff;
-  padding: 10px 20px;
+  background-color: #61dafb;
+  color: white;
   border: none;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 0.9em;
-  font-weight: bold;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #21a1f1;
+  }
 `;
 
 export const FilmeInfo = styled.div`
-  background-color: #ffffff; /* Branco */
-  padding: 20px;
+  background-color: #f8f9fa;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  width: 180px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   h2 {
-    margin-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 1rem;
+    margin: 10px 0;
+    text-align: center;
   }
 
   p {
+    font-size: 0.8rem;
+    color: #555;
+    text-align: center;
     margin: 5px 0;
   }
+`;
+
+export const FilmeImagem = styled.img`
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+`;
+
+export const FilmesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 `;
