@@ -44,6 +44,31 @@ export const Descricao = styled.p`
   text-shadow: 0 1px 2px #868686;
 `;
 
+
+export const BotaoFiltrar = styled.button`
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: transparent;
+color: #282c34;
+border: none;
+cursor: pointer;
+font-size: 16px;
+position: absolute;
+right: 20px; /* Move o botão para o canto direito */
+
+&:hover {
+  color: #555;
+}
+
+svg {
+  margin-right: 8px;
+}
+
+`;
+
+
+
 export const Main = styled.main`
   max-width: 1200px;
   padding: 20px;
@@ -51,7 +76,15 @@ export const Main = styled.main`
   flex-direction: column;
   align-items: center;
 `;
-
+export const ContainerBusca = styled.div`
+display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha os elementos à esquerda */
+  
+  width: 100%;
+  margin-bottom: 20px;
+  
+`;
 export const ContainerPes = styled.div`
   display: flex;
   justify-content: center;
@@ -145,4 +178,66 @@ export const FilmesContainer = styled.div`
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
+`;
+export const ModalFiltroWrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+export const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const FiltroInput = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+export const CheckboxWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  input {
+    margin-right: 10px;
+  }
+`;
+
+export const BotaoAplicarFiltro = styled.button`
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  &:hover {
+    background-color: #45a049;
+  }
 `;
